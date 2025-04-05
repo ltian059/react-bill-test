@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
-
+import sum from "@/test";
 function App() {
+  console.log(sum());
   return <div className="App">This is app</div>;
 }
 
