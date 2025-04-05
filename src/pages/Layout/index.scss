@@ -1,11 +1,23 @@
+@import "../../theme.scss";
 .layout {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-}
-.container {
-  flex: 1;
-}
-.footer {
+  .container {
+    flex: 1;
+  }
+  .footer {
+    .adm-tab-bar-item-icon {
+      font-size: px2vw(24);
+      height: px2vw(24);
+    }
+    .adm-tab-bar-item-title {
+      --adm-font-size-2: #{px2vw(10)};
+      line-height: px2vw(15);
+    }
+    .adm-tab-bar-wrap {
+      min-height: px2vw(48);
+    }
+  }
 }
