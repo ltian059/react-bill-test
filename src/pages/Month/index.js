@@ -3,16 +3,21 @@ import { DownOutline, UpOutline } from "antd-mobile-icons";
 import "./index.scss";
 import { useState } from "react";
 import classNames from "classnames";
-
+import dayjs from "dayjs";
 const Month = () => {
   //时间选择模块
-  const now = new Date();
   //点击打开时间选择器
   const [dateVisible, setDateVisible] = useState(false);
+  //控制时间显示
+  const [currDate, setCurrDate] = useState(() =>
+    dayjs(new Date()).format("YYYY | M")
+  );
   const onConfirm = (value) => {
-    console.log(value);
     setDateVisible(false);
+    setCurrDate(dayjs(value).format("YYYY | M"));
+    console.log("当前时间", currDate);
   };
+
   return (
     <div className="monthlyBill">
       <NavBar backIcon={false} className="nav">
@@ -22,7 +27,7 @@ const Month = () => {
         <div className="header">
           {/* 时间切换区域 */}
           <div className="date">
-            <span className="text">2023 | 3月账单</span>
+            <span className="text">{currDate}月账单</span>
             <DownOutline
               className={classNames("arrow", dateVisible && "expand")}
               onClick={() => setDateVisible(!dateVisible)}
@@ -50,7 +55,7 @@ const Month = () => {
           precision="month"
           onClose={() => setDateVisible(false)}
           onConfirm={onConfirm}
-          max={now}
+          max={new Date()}
           visible={dateVisible}
         />
       </div>
