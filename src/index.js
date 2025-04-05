@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 //导入定制主题文件
-import "./theme.css";
+import "./theme.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

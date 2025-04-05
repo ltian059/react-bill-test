@@ -3,6 +3,10 @@
   --adm-color-primary: rgb(105, 174, 120);
 }
 
+$base-width: 375;
+@function px2vw($px) {
+  @return $px / $base-width * 100vw;
+}
 /* 定制局部样式 */
 /* .purple {
   --adm-color-primary: #a062d4;
