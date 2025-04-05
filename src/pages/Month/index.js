@@ -1,11 +1,18 @@
 import { NavBar, DatePicker } from "antd-mobile";
 import { DownOutline, UpOutline } from "antd-mobile-icons";
 import "./index.scss";
+import { useState } from "react";
+import classNames from "classnames";
 
 const Month = () => {
   //时间选择模块
   const now = new Date();
-
+  //点击打开时间选择器
+  const [dateVisible, setDateVisible] = useState(false);
+  const onConfirm = (value) => {
+    console.log(value);
+    setDateVisible(false);
+  };
   return (
     <div className="monthlyBill">
       <NavBar backIcon={false} className="nav">
@@ -16,7 +23,10 @@ const Month = () => {
           {/* 时间切换区域 */}
           <div className="date">
             <span className="text">2023 | 3月账单</span>
-            <DownOutline className="arrow expand" />
+            <DownOutline
+              className={classNames("arrow", dateVisible && "expand")}
+              onClick={() => setDateVisible(!dateVisible)}
+            />
           </div>
           {/* 统计区域 */}
           <div className="twoLineOverview">
@@ -38,8 +48,10 @@ const Month = () => {
         <DatePicker
           title="时间选择"
           precision="month"
+          onClose={() => setDateVisible(false)}
+          onConfirm={onConfirm}
           max={now}
-          visible={false}
+          visible={dateVisible}
         />
       </div>
     </div>
