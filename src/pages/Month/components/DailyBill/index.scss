@@ -82,13 +82,16 @@
   }
 
   .dailyBillList {
-    // position: absolute;
+    max-height: 0;
+    padding: 0;
     width: 100%;
-    padding: px2vw(15) px2vw(10);
+    transition: all 0.3s ease;
+    overflow: hidden;
     border-top: 1px solid #ececec;
-    transition: all 0.3s;
     &.shown {
-      transform: translateY(20px);
+      padding: px2vw(15) px2vw(10);
+      max-height: px2vw(500);
+      overflow: auto;
     }
     .bill {
       display: flex;
