@@ -1,0 +1,76 @@
+.monthUnderAnuual {
+  // position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 0.1rem;
+  border-radius: 0.1rem;
+  background: #ffffff;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+
+  // overflow: hidden;
+  .header {
+    padding: 0.15rem;
+    display: flex;
+    flex-direction: column;
+    --ka-text-color: #888c98;
+    justify-content: space-around;
+    // height: 0.75rem;
+
+    .top {
+      height: 0.19rem;
+      .left {
+        height: 0.19rem;
+        line-height: 0.19rem;
+        span {
+          font-size: 0.16rem;
+        }
+      }
+    }
+    .oneLineOverview {
+      display: flex;
+      justify-content: space-between;
+      .pay {
+        flex: 1;
+        .type {
+          font-size: 0.1rem;
+          margin-right: 0.025rem;
+          color: #e56a77;
+        }
+        .money {
+          color: var(--ka-text-color);
+          font-size: 0.13rem;
+        }
+      }
+
+      .income {
+        flex: 1;
+        .type {
+          font-size: 0.1rem;
+          margin-right: 0.025rem;
+          color: #4f827c;
+        }
+        .money {
+          color: var(--ka-text-color);
+          font-size: 0.13rem;
+        }
+      }
+
+      .balance {
+        flex: 1;
+        margin-bottom: 0.05rem;
+        text-align: right;
+
+        .money {
+          line-height: 0.17rem;
+          margin-right: 0.06rem;
+          font-size: 0.17rem;
+        }
+        .type {
+          font-size: 0.1rem;
+          color: var(--ka-text-color);
+        }
+      }
+    }
+  }
+}

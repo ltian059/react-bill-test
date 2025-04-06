@@ -130,7 +130,7 @@ const New = () => {
                       onClick={() => setUseFor(item.type)}
                     >
                       <div className="icon">
-                        <Icon type={item.type} />
+                        <Icon type={item.type} className="img" />
                       </div>
                       <div className="text">{item.name}</div>
                     </div>

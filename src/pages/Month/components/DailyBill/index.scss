@@ -12,11 +12,11 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
   // overflow: hidden;
   .header {
+    height: 0.7rem;
     display: flex;
     flex-direction: column;
     --ka-text-color: #888c98;
     justify-content: space-around;
-    height: 0.7rem;
     .top {
       display: flex;
       justify-content: space-between;
