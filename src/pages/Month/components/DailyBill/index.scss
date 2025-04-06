@@ -89,7 +89,7 @@
     overflow: hidden;
     border-top: 1px solid #ececec;
     &.shown {
-      padding: px2vw(15) px2vw(10);
+      padding: px2vw(15) px2vw(10) px2vw(10) px2vw(15);
       max-height: px2vw(500);
       overflow: auto;
     }
@@ -110,6 +110,8 @@
       }
       .detail {
         flex: 1;
+        display: flex;
+        align-items: center;
         padding: px2vw(4) 0;
         .billType {
           display: flex;

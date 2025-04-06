@@ -5,6 +5,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import { useMemo } from "react";
 import { billTypeToName } from "@/constants/index";
+import Icon from "@/components/Icon";
 const DailyBill = ({ date, dailyBillList }) => {
   //TODO: 这里是日账单的组件，后续需要根据实际数据进行渲染
   //1.点击箭头展开和收起
@@ -32,10 +33,13 @@ const DailyBill = ({ date, dailyBillList }) => {
     return { pay, income, balance };
   }, [dailyBillList]);
 
+  //   3.渲染日账单列表
   const DailyBillItem = ({ item }) => {
     return (
       <div className="bill">
         <div className="detail">
+          {/* 图标 */}
+          <Icon type={item.useFor} />
           <div className="billType">{billTypeToName[item.useFor]}</div>
         </div>
         <div className={classNames("money", item.type)}>
