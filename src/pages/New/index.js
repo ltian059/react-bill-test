@@ -1,4 +1,5 @@
 import { Button, DatePicker, Input, NavBar } from "antd-mobile";
+import MyDatePicker from "@/components/DatePicker";
 import Icon from "@/components/Icon";
 import "./index.scss";
 import classNames from "classnames";
@@ -8,11 +9,30 @@ import { useState } from "react";
 import { addBillToServer } from "@/store/modules/billStore";
 import { useDispatch } from "react-redux";
 import { setJumpToDate } from "@/store/modules/billStore";
+import dayjs from "dayjs";
 const New = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //1. 控制收入页面和支出页面却换的状态
   const [type, setType] = useState("pay"); // pay 支出 income 收入
+
+  // 控制时间选择器的显示和隐藏
+  const [datePickerVisible, setPickerVisible] = useState(false);
+  // 存储选择的日期
+  const [date, setDate] = useState();
+  const onDatePickerConfirm = (date) => {
+    setPickerVisible(false); // 关闭时间选择器
+    setDate(date); // 设置日期
+  };
+  //显示当前选择的日期
+  const showDate = () => {
+    if (dayjs(date).format("YYYY-MM-DD") === dayjs().format("YYYY-MM-DD")) {
+      return "今天";
+    } else {
+      return dayjs(date).format("YYYY/MM/DD");
+    }
+  };
+
   // 2.保存账单实现：
   // 2.1 收集表单数据
   //金额双向绑定
@@ -29,7 +49,7 @@ const New = () => {
     const formData = {
       type,
       money: type === "pay" ? -money : +money,
-      date: new Date().toISOString(),
+      date: date,
       useFor,
     };
     console.log(formData);
@@ -66,11 +86,16 @@ const New = () => {
           <div className="kaForm">
             <div className="date">
               <Icon type="calendar" className="icon" />
-              <span className="text">{"今天"}</span>
-              <DatePicker
+              <span className="text" onClick={() => setPickerVisible(true)}>
+                {showDate()}
+              </span>
+              {/* 时间选择器 */}
+              <MyDatePicker
                 className="kaDate"
                 title="记账日期"
-                max={new Date()}
+                onClose={() => setPickerVisible(false)}
+                onConfirm={onDatePickerConfirm}
+                visible={datePickerVisible}
               />
             </div>
             <div className="kaInput">
@@ -99,7 +124,7 @@ const New = () => {
                     <div
                       className={classNames(
                         "item",
-                        useFor === item.type && "active"
+                        useFor === item.type && "selected"
                       )}
                       key={item.type}
                       onClick={() => setUseFor(item.type)}

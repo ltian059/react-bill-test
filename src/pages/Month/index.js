@@ -1,4 +1,5 @@
 import { NavBar, DatePicker } from "antd-mobile";
+import MyDatePicker from "@/components/DatePicker";
 import { DownOutline } from "antd-mobile-icons";
 import "./index.scss";
 import { useEffect, useMemo, useState } from "react";
@@ -144,15 +145,14 @@ const Month = () => {
           />
         ))}
         {/* 时间选择器 */}
-        <DatePicker
+        <MyDatePicker
           className="datePicker"
           title="时间选择"
           precision="month"
           onClose={() => setDateVisible(false)}
           onConfirm={onConfirm}
-          max={new Date()}
           visible={dateVisible}
-        ></DatePicker>
+        ></MyDatePicker>
       </div>
     </div>
   );

@@ -307,6 +307,27 @@
       "money": -124,
       "date": "2025-04-06T18:21:11.864Z",
       "useFor": "book"
+    },
+    {
+      "id": "5c33",
+      "type": "pay",
+      "money": -1234,
+      "date": "2025-04-02T04:00:00.000Z",
+      "useFor": "food"
+    },
+    {
+      "id": "79a2",
+      "type": "pay",
+      "money": -123,
+      "date": "2025-04-20T04:00:00.000Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "6d50",
+      "type": "pay",
+      "money": -1234,
+      "date": "2027-04-06T04:00:00.000Z",
+      "useFor": "book"
     }
   ]
 }

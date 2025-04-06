@@ -1,10 +1,9 @@
 /* 定制主题 */
 
-$base-width: 375;
-@function px2vw($px) {
-  @return $px / $base-width * 100vw;
-}
-
+// $base-width: 375;
+// @function px2vw($px) {
+//   @return $px / $base-width * 100vw;
+// }
 * {
   padding: 0;
   margin: 0;
