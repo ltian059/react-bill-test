@@ -4,7 +4,6 @@
   --ka-border-color: #191d26;
   height: 100%;
   background-color: var(--ka-bg-color);
-  position: relative;
   display: flex;
   flex-direction: column;
   .nav {
@@ -133,6 +132,14 @@
           margin-right: 0.07rem;
           text-align: center;
           border: 0.005rem solid #fff;
+          &.active {
+            background-image: radial-gradient(
+              circle at center center,
+              #fff 0%,
+              var(--ka-bg-color) 50%
+            );
+            border-radius: 0.1rem;
+          }
 
           &:last-child {
             margin-right: 0;
@@ -156,9 +163,10 @@
   }
 
   .btns {
-    // position: absolute;
-    // bottom: 0.15rem;
-    // transform: translateX(-50%);
+    position: fixed;
+    bottom: 0.15rem;
+    left: 50%;
+    transform: translateX(-50%);
     // width: 100%;
     text-align: center;
     .btn {

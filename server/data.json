@@ -90,6 +90,223 @@
       "money": -1111,
       "date": "2025-04-05T18:22:52.555Z",
       "useFor": "food"
+    },
+    {
+      "id": "6b06",
+      "type": "pay",
+      "money": -2341,
+      "date": "2025-04-06T16:19:46.446Z",
+      "useFor": "travel"
+    },
+    {
+      "id": "373a",
+      "type": "pay",
+      "money": -11112,
+      "date": "2025-04-06T16:23:05.059Z",
+      "useFor": "longdistance"
+    },
+    {
+      "id": "cf63",
+      "type": "pay",
+      "money": -244,
+      "date": "2025-04-06T16:24:13.144Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "14d9",
+      "type": "pay",
+      "money": -11234,
+      "date": "2025-04-06T16:32:51.177Z",
+      "useFor": "longdistance"
+    },
+    {
+      "id": "dff1",
+      "type": "pay",
+      "money": -50,
+      "date": "2025-04-06T16:35:22.511Z",
+      "useFor": "drinks"
+    },
+    {
+      "id": "6a44",
+      "type": "income",
+      "money": 666,
+      "date": "2025-04-06T16:57:23.262Z",
+      "useFor": "salary"
+    },
+    {
+      "id": "7d31",
+      "type": "income",
+      "money": 2222,
+      "date": "2025-04-06T17:03:34.341Z",
+      "useFor": "bonus"
+    },
+    {
+      "id": "0799",
+      "type": "pay",
+      "money": -22,
+      "date": "2025-04-06T17:13:00.760Z",
+      "useFor": "taxi"
+    },
+    {
+      "id": "69a0",
+      "type": "pay",
+      "money": -12,
+      "date": "2025-04-06T17:13:57.745Z",
+      "useFor": "game"
+    },
+    {
+      "id": "67ba",
+      "type": "pay",
+      "money": -12,
+      "date": "2025-04-06T17:15:56.487Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "ecbf",
+      "type": "pay",
+      "money": -123,
+      "date": "2025-04-06T17:16:09.833Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "bacc",
+      "type": "pay",
+      "money": -134,
+      "date": "2025-04-06T17:17:20.167Z",
+      "useFor": "food"
+    },
+    {
+      "id": "186c",
+      "type": "pay",
+      "money": -1243,
+      "date": "2025-04-06T17:18:00.717Z",
+      "useFor": "bag"
+    },
+    {
+      "id": "583c",
+      "type": "pay",
+      "money": -1234,
+      "date": "2025-04-06T17:19:23.387Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "5143",
+      "type": "pay",
+      "money": -111,
+      "date": "2025-04-06T17:30:13.643Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "837b",
+      "type": "pay",
+      "money": -112,
+      "date": "2025-04-06T17:35:37.972Z",
+      "useFor": "book"
+    },
+    {
+      "id": "9f1b",
+      "type": "pay",
+      "money": -134,
+      "date": "2025-04-06T17:40:33.857Z",
+      "useFor": "home"
+    },
+    {
+      "id": "684c",
+      "type": "pay",
+      "money": -345,
+      "date": "2025-04-06T17:46:38.108Z",
+      "useFor": "clothes"
+    },
+    {
+      "id": "2820",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-04-06T17:48:12.009Z",
+      "useFor": "clothes"
+    },
+    {
+      "id": "5778",
+      "type": "pay",
+      "money": -1255,
+      "date": "2025-04-06T17:48:52.876Z",
+      "useFor": "community"
+    },
+    {
+      "id": "64d2",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-04-06T17:50:17.119Z",
+      "useFor": "promote"
+    },
+    {
+      "id": "f83a",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-04-06T17:51:10.332Z",
+      "useFor": "community"
+    },
+    {
+      "id": "255d",
+      "type": "pay",
+      "money": -123,
+      "date": "2025-04-06T17:53:06.070Z",
+      "useFor": "clothes"
+    },
+    {
+      "id": "8662",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-04-06T17:53:57.371Z",
+      "useFor": "bodybuilding"
+    },
+    {
+      "id": "6b4c",
+      "type": "pay",
+      "money": -1245,
+      "date": "2025-04-06T17:54:11.110Z",
+      "useFor": "bodybuilding"
+    },
+    {
+      "id": "c561",
+      "type": "pay",
+      "money": -1234,
+      "date": "2025-04-06T17:55:48.610Z",
+      "useFor": "bag"
+    },
+    {
+      "id": "af25",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-04-06T17:57:46.612Z",
+      "useFor": "promote"
+    },
+    {
+      "id": "8d07",
+      "type": "pay",
+      "money": -123,
+      "date": "2025-04-06T18:07:54.894Z",
+      "useFor": "community"
+    },
+    {
+      "id": "0873",
+      "type": "pay",
+      "money": -123,
+      "date": "2025-04-06T18:09:54.738Z",
+      "useFor": "community"
+    },
+    {
+      "id": "8805",
+      "type": "pay",
+      "money": -1223,
+      "date": "2025-04-06T18:20:26.513Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "2784",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-04-06T18:21:11.864Z",
+      "useFor": "book"
     }
   ]
 }

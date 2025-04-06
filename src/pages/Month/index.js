@@ -4,17 +4,22 @@ import "./index.scss";
 import { useEffect, useMemo, useState } from "react";
 import classNames from "classnames";
 import dayjs from "dayjs";
-import { useSelector } from "react-redux";
-import { groupBy } from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import { groupBy, set } from "lodash";
 import DailyBill from "./components/DailyBill";
+import { setJumpToDate } from "@/store/modules/billStore";
 const Month = () => {
+  const dispatch = useDispatch();
+  //用于添加新帐单后，重新设置当前年月
+  const { jumpToDate } = useSelector((state) => state.bill);
   //时间选择模块
   //点击打开时间选择器
   const [dateVisible, setDateVisible] = useState(false);
   //控制时间显示
-  const [currDate, setCurrDate] = useState(() =>
-    dayjs(new Date()).format("YYYY | M")
-  );
+  const [currDate, setCurrDate] = useState(() => {
+    // 如果有跳转日期，则需要跳转到跳转日期的月份
+    return dayjs(new Date()).format("YYYY | M");
+  });
   //3. 计算当前月份的支出、收入和结余
   const [currMonthBillList, setCurrMonthBillList] = useState([]);
 
@@ -43,7 +48,6 @@ const Month = () => {
     console.log("当前时间", currDate);
     // setCurrMonthBillList(billListGroupedByMonth[currDate]);
   };
-
   //进入页面时，默认显示当前月份的账单，并在切换月份时更新
   useEffect(() => {
     setCurrMonthBillList(billListGroupedByMonth[currDate]);
@@ -83,6 +87,21 @@ const Month = () => {
     [currMonthBillList]
   );
 
+  //3. 处理跳转日期
+  //本地组件保存跳转日期
+  const [localJumpToDate, setLocalJumpToDate] = useState(null);
+  useEffect(() => {
+    if (jumpToDate) {
+      setCurrDate(dayjs(jumpToDate).format("YYYY | M"));
+      setLocalJumpToDate(jumpToDate);
+      dispatch(setJumpToDate(null)); //清空跳转日期，否则会无限循环
+    }
+  }, [jumpToDate, dispatch]);
+
+  const onJumpComplete = () => {
+    setLocalJumpToDate(null); //清空跳转日期
+  };
+
   return (
     <div className="monthlyBill">
       <NavBar backIcon={false} className="nav">
@@ -120,6 +139,8 @@ const Month = () => {
             key={item}
             date={item}
             dailyBillList={currBillListGroupedByDay[item]}
+            jumpToDate={localJumpToDate}
+            onJumpComplete={onJumpComplete} //传递回调函数给子组件
           />
         ))}
         {/* 时间选择器 */}
