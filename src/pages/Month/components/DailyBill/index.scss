@@ -1,22 +1,29 @@
 @import "../../index.scss";
 
 .dailyBill {
+  // position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: px2vw(100);
   padding: px2vw(15) px2vw(10);
   margin-top: px2vw(10);
   border-radius: px2vw(10);
   background: #ffffff;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+  // overflow: hidden;
   .header {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     --ka-text-color: #888c98;
-    justify-content: space-between;
-    height: px2vw(21);
+    justify-content: space-around;
+    height: px2vw(70);
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .arrow {
+      font-size: px2vw(13);
       transition: all 0.3s;
     }
     .arrow.expand {
@@ -27,8 +34,6 @@
         font-size: px2vw(14);
       }
     }
-  }
-  .body {
     .oneLineOverview {
       display: flex;
       justify-content: space-between;
@@ -71,6 +76,54 @@
         .type {
           font-size: px2vw(10);
           color: var(--ka-text-color);
+        }
+      }
+    }
+  }
+
+  .dailyBillList {
+    // position: absolute;
+    width: 100%;
+    padding: px2vw(15) px2vw(10);
+    border-top: 1px solid #ececec;
+    transition: all 0.3s;
+    &.shown {
+      transform: translateY(20px);
+    }
+    .bill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: px2vw(43);
+      margin-bottom: px2vw(15);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .icon {
+        margin-right: px2vw(10);
+        font-size: px2vw(25);
+      }
+      .detail {
+        flex: 1;
+        padding: px2vw(4) 0;
+        .billType {
+          display: flex;
+          align-items: center;
+          height: px2vw(17);
+          line-height: px2vw(17);
+          font-size: px2vw(14);
+          padding-left: px2vw(4);
+        }
+      }
+      .money {
+        font-size: px2vw(17);
+        &.pay {
+          color: #ff917b;
+        }
+        &.income {
+          color: #4f827c;
         }
       }
     }
