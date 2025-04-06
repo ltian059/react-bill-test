@@ -328,6 +328,113 @@
       "money": -1234,
       "date": "2027-04-06T04:00:00.000Z",
       "useFor": "book"
+    },
+    {
+      "id": "ec54",
+      "type": "pay",
+      "money": -123.553,
+      "useFor": "travel"
+    },
+    {
+      "id": "e929",
+      "type": "pay",
+      "money": -22.55,
+      "useFor": "book"
+    },
+    {
+      "id": "0675",
+      "type": "pay",
+      "money": -333.33,
+      "useFor": "travel"
+    },
+    {
+      "id": "0789",
+      "type": "pay",
+      "money": -1248.55,
+      "useFor": "drinks"
+    },
+    {
+      "id": "3d07",
+      "type": "pay",
+      "money": -1246,
+      "date": "2025-04-04T04:00:00.000Z",
+      "useFor": "travel"
+    },
+    {
+      "id": "3fe2",
+      "type": "income",
+      "money": 1245,
+      "date": "2025-04-10T04:00:00.000Z",
+      "useFor": "overtimepay"
+    },
+    {
+      "id": "2119",
+      "type": "pay",
+      "money": -1244,
+      "date": "2025-05-06T04:00:00.000Z",
+      "useFor": "travel"
+    },
+    {
+      "id": "97de",
+      "type": "pay",
+      "money": -1245,
+      "date": "2025-06-06T04:00:00.000Z",
+      "useFor": "bag"
+    },
+    {
+      "id": "a10e",
+      "type": "pay",
+      "money": -12456,
+      "date": "2025-07-06T04:00:00.000Z",
+      "useFor": "promote"
+    },
+    {
+      "id": "349f",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-08-06T04:00:00.000Z",
+      "useFor": "bodybuilding"
+    },
+    {
+      "id": "3f91",
+      "type": "pay",
+      "money": -1111,
+      "date": "2025-02-05T05:00:00.000Z",
+      "useFor": "travel"
+    },
+    {
+      "id": "76e8",
+      "type": "pay",
+      "money": -23454,
+      "date": "2025-02-06T05:00:00.000Z",
+      "useFor": "audio"
+    },
+    {
+      "id": "8c64",
+      "type": "pay",
+      "money": -1121,
+      "useFor": "food"
+    },
+    {
+      "id": "fe2a",
+      "type": "pay",
+      "money": -12234,
+      "date": "2025-09-06T04:00:00.000Z",
+      "useFor": "promote"
+    },
+    {
+      "id": "de0a",
+      "type": "pay",
+      "money": -12434,
+      "date": "2025-01-04T05:00:00.000Z",
+      "useFor": "game"
+    },
+    {
+      "id": "a35d",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-07-06T04:00:00.000Z",
+      "useFor": "travel"
     }
   ]
 }

@@ -1,51 +1,115 @@
 import { NavBar } from "antd-mobile";
 import { DownOutline } from "antd-mobile-icons";
 import MyDatePicker from "@/components/DatePicker";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./index.scss";
 import MonthlyBill from "./components/MonthlyBill";
-
+import classNames from "classnames";
+import { useSelector } from "react-redux";
+import {groupBy} from "lodash"
+import dayjs, { Dayjs } from "dayjs";
 const Annual = () => {
   const [datePickerVisible, setDatePickerVisible] = useState(false);
-  const onDatePickerConfirm = (date) => {
-    setDatePickerVisible(false);
-    console.log("选择的日期", date);
-  };
 
+
+  //获取账单数据
+  const { billList } = useSelector((state) => state.bill);
+  //获取当前年份
+  const [currYear, setCurrYear] = useState(dayjs().format("YYYY"));
+  const onDatePickerConfirm = (date) => {
+    setDatePickerVisible(false);    
+    setCurrYear(dayjs(date).format("YYYY"));
+  };
+  //将所有账单数据按照年份分组，并缓存
+  const groupByYearBill = useMemo(() => {
+    const groupByYearBill = groupBy(billList, (item) => dayjs(item.date).format("YYYY"));
+    return groupByYearBill;
+  }, [billList]);
+
+  //选择当前年份的账单数据
+  const [currYearBill, setCurrYearBill] = useState(groupByYearBill[currYear]);
+  //当年份变化时，更新当前年份的账单数据
+  useEffect(() => {
+    setCurrYearBill(groupByYearBill[currYear]);
+  }, [currYear, groupByYearBill]);
+
+  //1. 计算当前年的总支出、收入和结余
+  const [totalPay, totalIncome, totalBalance] = useMemo(() => {
+    let totalPay = 0; //总支出
+    let totalIncome = 0; //总收入
+    let totalBalance = 0; //总结余
+    if (currYearBill) {
+      currYearBill.forEach((item) => {
+        if (item.type === "pay") {
+          totalPay += item.money;
+        } else if (item.type === "income") {
+          totalIncome += item.money;
+        }
+      });
+      totalBalance = totalIncome + totalPay;
+    }
+    return [totalPay, totalIncome, totalBalance];
+  }, [currYearBill]);
+
+  //2. 分组当前年份每个月的账单
+  const [keys,groupByMonth] = useMemo(() => {
+    const groupByMonth = groupBy(currYearBill, (item) => dayjs(item.date).format("YYYY-MM"));
+    const keys = Object.keys(groupByMonth);
+    return [keys,groupByMonth];
+  }, [currYearBill]);
+
+  
   return (
     <div className="annualBill">
       {/* header顶部区域 */}
       <div className="header">
-        <NavBar backIcon={false} className="nav" onClick={() => {}}>
-          2025年
-          <DownOutline className="arrow" />
-          <MyDatePicker
-            precision="year"
-            visible={datePickerVisible}
-            onClose={() => setDatePickerVisible(false)}
-            onConfirm={onDatePickerConfirm}
-          />
-        </NavBar>
+        <div className="top" onClick={() => setDatePickerVisible(true)}>
+          <NavBar
+            backIcon={false}
+            className="nav"
+            onClick={() => {
+              setDatePickerVisible(true);
+            }}
+          >
+            {currYear}年
+            <DownOutline
+              className={classNames("arrow", datePickerVisible && "expand")}
+              onClick={() => setDatePickerVisible(true)}
+            />
+            <MyDatePicker
+              precision="year"
+              visible={datePickerVisible}
+              onClose={() => setDatePickerVisible(false)}
+              onConfirm={onDatePickerConfirm}
+            />
+          </NavBar>
+        </div>
         <div className="annualTotal">
           <div className="item pay">
-            <p className="money">37001.00</p>
+            <p className="money">{totalPay.toFixed(2)}</p>
             <p className="type">支出</p>
           </div>
           <div className="item income">
-            <p className="money">2888.00</p>
+            <p className="money">{totalIncome.toFixed(2)}</p>
             <p className="type">收入</p>
           </div>
           <div className="item balance">
-            <p className="money">-34113.00</p>
+            <p className="money">{totalBalance.toFixed(2)}</p>
             <p className="type">结余</p>
           </div>
         </div>
       </div>
       <div className="body">
         <div className="content">
-          <MonthlyBill />
-          <MonthlyBill />
-          <MonthlyBill />
+          {keys.map((item) => 
+            <MonthlyBill
+              key={item}
+              month={dayjs(item).format("M")}
+              billList={groupByMonth[item]}
+            />
+
+          )}
+
         </div>
       </div>
     </div>

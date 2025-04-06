@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import classNames from "classnames";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
-import { groupBy, set } from "lodash";
+import { groupBy, sortBy } from "lodash";
 import DailyBill from "./components/DailyBill";
 import { setJumpToDate } from "@/store/modules/billStore";
 const Month = () => {
@@ -77,7 +77,9 @@ const Month = () => {
     const map = groupBy(currMonthBillList, (item) =>
       dayjs(item.date).format("YYYY-MM-DD")
     );
-    const keys = Object.keys(map);
+    const keys = Object.keys(map).sort((a, b) => {
+      return dayjs(a).isAfter(dayjs(b)) ? -1 : 1; //升序排列
+    });
     console.log("按月分组数据", map);
     return [keys, map];
   };
@@ -90,14 +92,14 @@ const Month = () => {
 
   //3. 处理跳转日期
   //本地组件保存跳转日期
-  const [localJumpToDate, setLocalJumpToDate] = useState(null);
+  const [localJumpToDate, setLocalJumpToDate] = useState(jumpToDate);
   useEffect(() => {
     if (jumpToDate) {
       setCurrDate(dayjs(jumpToDate).format("YYYY | M"));
       setLocalJumpToDate(jumpToDate);
       dispatch(setJumpToDate(null)); //清空跳转日期，否则会无限循环
     }
-  }, [jumpToDate, dispatch]);
+  }, []);
 
   const onJumpComplete = () => {
     setLocalJumpToDate(null); //清空跳转日期
@@ -108,7 +110,6 @@ const Month = () => {
       <NavBar backIcon={false} className="nav">
         月度收支
       </NavBar>
-      <div className="content">
         <div className="header">
           {/* 时间切换区域 */}
           <div className="date">
@@ -134,6 +135,7 @@ const Month = () => {
             </div>
           </div>
         </div>
+      <div className="content">
         {/* 每日账单区域 */}
         {keys.map((item) => (
           <DailyBill

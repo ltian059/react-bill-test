@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "antd-mobile";
 import { fetchBillList } from "@/store/modules/billStore";
 import { useEffect } from "react";
@@ -40,20 +40,22 @@ const Layout = () => {
   };
   //管理月度账单列表的redux
   const dispatch = useDispatch();
-  const { billList } = useSelector((state) => state.bill);
   useEffect(() => {
     dispatch(fetchBillList());
   }, [dispatch]);
 
+  const location = useLocation();
+  console.log("location", location.pathname);
+  
   return (
     <div className="layout">
       <div className="container">
         <Outlet />
       </div>
       <div className="footer">
-        <TabBar onChange={(value) => switchRoute(value)}>
+        <TabBar onChange={(value) => switchRoute(value)} activeKey={location.pathname}>
           {tabs.map((item) => (
-            <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
+            <TabBar.Item key={item.key} icon={item.icon} title={item.title}/>
           ))}
         </TabBar>
       </div>
