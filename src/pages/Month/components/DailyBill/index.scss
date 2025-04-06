@@ -1,0 +1,78 @@
+@import "../../index.scss";
+
+.dailyBill {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: px2vw(100);
+  padding: px2vw(15) px2vw(10);
+  margin-top: px2vw(10);
+  border-radius: px2vw(10);
+  background: #ffffff;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+  .header {
+    display: flex;
+    align-items: center;
+    --ka-text-color: #888c98;
+    justify-content: space-between;
+    height: px2vw(21);
+    .arrow {
+      transition: all 0.3s;
+    }
+    .arrow.expand {
+      transform: rotate(180deg);
+    }
+    .left {
+      span {
+        font-size: px2vw(14);
+      }
+    }
+  }
+  .body {
+    .oneLineOverview {
+      display: flex;
+      justify-content: space-between;
+      .pay {
+        flex: 1;
+        .type {
+          font-size: px2vw(10);
+          margin-right: px2vw(2.5);
+          color: #e56a77;
+        }
+        .money {
+          color: var(--ka-text-color);
+          font-size: px2vw(13);
+        }
+      }
+
+      .income {
+        flex: 1;
+        .type {
+          font-size: px2vw(10);
+          margin-right: px2vw(2.5);
+          color: #4f827c;
+        }
+        .money {
+          color: var(--ka-text-color);
+          font-size: px2vw(13);
+        }
+      }
+
+      .balance {
+        flex: 1;
+        margin-bottom: px2vw(5);
+        text-align: right;
+
+        .money {
+          line-height: px2vw(17);
+          margin-right: px2vw(6);
+          font-size: px2vw(17);
+        }
+        .type {
+          font-size: px2vw(10);
+          color: var(--ka-text-color);
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,12 @@
 import { NavBar, DatePicker } from "antd-mobile";
-import { DownOutline, UpOutline } from "antd-mobile-icons";
+import { DownOutline } from "antd-mobile-icons";
 import "./index.scss";
 import { useEffect, useMemo, useState } from "react";
 import classNames from "classnames";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
-import { groupBy, set } from "lodash";
+import { groupBy } from "lodash";
+import DailyBill from "./components/DailyBill";
 const Month = () => {
   //时间选择模块
   //点击打开时间选择器
@@ -66,6 +67,22 @@ const Month = () => {
     return { pay, income, balance };
   }, [currMonthBillList]);
 
+  //当前月按照日来分组
+  const groupCurrBillListByDay = () => {
+    const map = groupBy(currMonthBillList, (item) =>
+      dayjs(item.date).format("YYYY-MM-DD")
+    );
+    const keys = Object.keys(map);
+    console.log("按月分组数据", map);
+    return [keys, map];
+  };
+
+  //2. useMemo缓存计算结果，避免重复计算
+  const [keys, currBillListGroupedByDay] = useMemo(
+    () => groupCurrBillListByDay(),
+    [currMonthBillList]
+  );
+
   return (
     <div className="monthlyBill">
       <NavBar backIcon={false} className="nav">
@@ -97,6 +114,14 @@ const Month = () => {
             </div>
           </div>
         </div>
+        {/* 每日账单区域 */}
+        {keys.map((item) => (
+          <DailyBill
+            key={item}
+            date={item}
+            dailyBillList={currBillListGroupedByDay[item]}
+          />
+        ))}
         {/* 时间选择器 */}
         <DatePicker
           className="datePicker"

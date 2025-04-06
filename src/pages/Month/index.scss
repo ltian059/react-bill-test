@@ -6,7 +6,7 @@
   height: 100%;
   --ka-text-color: #191d26;
   background: linear-gradient(180deg, #ffffff, #f5f5f5 100%);
-  background-color: rgba(245, 245, 245, 0.9);
+  background-color: #f6f6f6;
   .nav {
     height: px2vw(45);
     color: #121826;
@@ -25,10 +25,8 @@
     &::-webkit-scrollbar {
       display: none; /* Safari and Chrome */
     }
-    .header {
+    > .header {
       padding: 0 px2vw(10);
-      position: relative;
-      z-index: 1;
       border-radius: px2vw(10);
       background: linear-gradient(
           to bottom,
@@ -37,7 +35,7 @@
         ),
         url("https://img.tukuppt.com/ad_preview/00/08/86/5d354b4214ac4.jpg%21/fw/980");
       background-size: 100% 100%;
-      height: 25%;
+      height: px2vw(135);
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -77,4 +75,12 @@
       }
     }
   }
+}
+
+.datePicker {
+  --item-height: #{px2vw(34)};
+  --item-font-size: #{px2vw(16)};
+  --title-font-size: #{px2vw(15)};
+  --header-button-font-size: #{px2vw(15)};
+  height: px2vw(300);
 }
