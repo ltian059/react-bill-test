@@ -5,21 +5,30 @@ import { useEffect, useMemo, useState } from "react";
 import "./index.scss";
 import MonthlyBill from "./components/MonthlyBill";
 import classNames from "classnames";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {groupBy} from "lodash"
 import dayjs, { Dayjs } from "dayjs";
+import { setLastActiveYear } from "@/store/modules/billStore";
 const Annual = () => {
+  //选择年份的日期选择器
   const [datePickerVisible, setDatePickerVisible] = useState(false);
-
-
-  //获取账单数据
-  const { billList } = useSelector((state) => state.bill);
-  //获取当前年份
-  const [currYear, setCurrYear] = useState(dayjs().format("YYYY"));
   const onDatePickerConfirm = (date) => {
     setDatePickerVisible(false);    
     setCurrYear(dayjs(date).format("YYYY"));
   };
+  //获取账单数据
+  const { billList } = useSelector((state) => state.bill);
+  //判断上次是否有访问的年份
+  const { lastActiveYear } = useSelector((state) => state.bill);
+  //获取当前年份
+  const [currYear, setCurrYear] = useState(lastActiveYear || dayjs().format("YYYY"));
+  //更新上次访问的年份
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setLastActiveYear(currYear));
+  }, [currYear, dispatch]);
+  
+  
   //将所有账单数据按照年份分组，并缓存
   const groupByYearBill = useMemo(() => {
     const groupByYearBill = groupBy(billList, (item) => dayjs(item.date).format("YYYY"));
@@ -81,6 +90,7 @@ const Annual = () => {
               visible={datePickerVisible}
               onClose={() => setDatePickerVisible(false)}
               onConfirm={onDatePickerConfirm}
+              defaultValue={dayjs(currYear).toDate()}
             />
           </NavBar>
         </div>

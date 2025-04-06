@@ -5,6 +5,8 @@ const billSlice = createSlice({
   initialState: {
     billList: [],
     jumpToDate: null,
+    lastActiveDate: null,
+    lastActiveYear: null,
   },
   reducers: {
     setBillList: (state, action) => {
@@ -19,11 +21,19 @@ const billSlice = createSlice({
     setJumpToDate: (state, action) => {
       state.jumpToDate = action.payload;
     },
+    //设置上一次访问的日期，用于进入其他页面后返回月度账单时，重新显示上一次访问的日期
+    setLastActiveDate: (state, action) => {
+      state.lastActiveDate = action.payload;
+    },
+    //设置上一次访问的年份，用于进入其他页面后返回年度账单时，重新显示上一次访问的年份
+    setLastActiveYear: (state, action) => {
+      state.lastActiveYear = action.payload;
+    },
   },
 });
 
 //解构出来actionCreators函数
-const { setBillList, addBill, setJumpToDate } = billSlice.actions;
+const { setBillList, addBill, setJumpToDate, setLastActiveDate, setLastActiveYear} = billSlice.actions;
 //获取bill列表actionCreator，异步逻辑
 const fetchBillList = () => {
   return async (dispatch) => {
@@ -46,4 +56,4 @@ const addBillToServer = (data) => {
 //导出reducer和actionCreators函数
 
 export default billSlice.reducer;
-export { setBillList, fetchBillList, addBillToServer, setJumpToDate };
+export { setBillList, fetchBillList, addBillToServer, setJumpToDate, setLastActiveDate, setLastActiveYear };
