@@ -9,15 +9,15 @@
   }
   .footer {
     .adm-tab-bar-item-icon {
-      font-size: px2vw(24);
-      height: px2vw(24);
+      font-size: 0.24rem;
+      height: 0.24rem;
     }
     .adm-tab-bar-item-title {
-      --adm-font-size-2: #{px2vw(10)};
-      line-height: px2vw(15);
+      --adm-font-size-2: 0.1rem;
+      line-height: 0.15rem;
     }
     .adm-tab-bar-wrap {
-      min-height: px2vw(48);
+      min-height: 0.48rem;
     }
   }
 }

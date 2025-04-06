@@ -4,6 +4,27 @@ $base-width: 375;
 @function px2vw($px) {
   @return $px / $base-width * 100vw;
 }
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@media (min-width: 596px) {
+  .app {
+    max-width: 596px;
+    margin: 0 auto;
+  }
+}
+html,
+body {
+  height: 100%;
+}
+#root,
+.app {
+  height: 100%;
+}
+
 :root:root {
   --adm-color-primary: rgb(105, 174, 120);
 }

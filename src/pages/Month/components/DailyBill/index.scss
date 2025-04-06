@@ -5,9 +5,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: px2vw(15) px2vw(10);
-  margin-top: px2vw(10);
-  border-radius: px2vw(10);
+  padding: 0.15rem 0.1rem;
+  margin-top: 0.1rem;
+  border-radius: 0.1rem;
   background: #ffffff;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
   // overflow: hidden;
@@ -16,14 +16,14 @@
     flex-direction: column;
     --ka-text-color: #888c98;
     justify-content: space-around;
-    height: px2vw(70);
+    height: 0.7rem;
     .top {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .arrow {
-      font-size: px2vw(13);
+      font-size: 0.13rem;
       transition: all 0.3s;
     }
     .arrow.expand {
@@ -31,7 +31,7 @@
     }
     .left {
       span {
-        font-size: px2vw(14);
+        font-size: 0.14rem;
       }
     }
     .oneLineOverview {
@@ -40,41 +40,41 @@
       .pay {
         flex: 1;
         .type {
-          font-size: px2vw(10);
-          margin-right: px2vw(2.5);
+          font-size: 0.1rem;
+          margin-right: 0.025rem;
           color: #e56a77;
         }
         .money {
           color: var(--ka-text-color);
-          font-size: px2vw(13);
+          font-size: 0.13rem;
         }
       }
 
       .income {
         flex: 1;
         .type {
-          font-size: px2vw(10);
-          margin-right: px2vw(2.5);
+          font-size: 0.1rem;
+          margin-right: 0.025rem;
           color: #4f827c;
         }
         .money {
           color: var(--ka-text-color);
-          font-size: px2vw(13);
+          font-size: 0.13rem;
         }
       }
 
       .balance {
         flex: 1;
-        margin-bottom: px2vw(5);
+        margin-bottom: 0.05rem;
         text-align: right;
 
         .money {
-          line-height: px2vw(17);
-          margin-right: px2vw(6);
-          font-size: px2vw(17);
+          line-height: 0.17rem;
+          margin-right: 0.06rem;
+          font-size: 0.17rem;
         }
         .type {
-          font-size: px2vw(10);
+          font-size: 0.1rem;
           color: var(--ka-text-color);
         }
       }
@@ -89,41 +89,41 @@
     overflow: hidden;
     border-top: 1px solid #ececec;
     &.shown {
-      padding: px2vw(15) px2vw(10) px2vw(10) px2vw(15);
-      max-height: px2vw(500);
+      padding: 0.15rem 0.1rem 0.1rem 0.15rem;
+      max-height: 5rem;
       overflow: auto;
     }
     .bill {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: px2vw(43);
-      margin-bottom: px2vw(15);
+      height: 0.43rem;
+      margin-bottom: 0.15rem;
 
       &:last-child {
         margin-bottom: 0;
       }
 
       .icon {
-        margin-right: px2vw(10);
-        font-size: px2vw(25);
+        margin-right: 0.1rem;
+        font-size: 0.25rem;
       }
       .detail {
         flex: 1;
         display: flex;
         align-items: center;
-        padding: px2vw(4) 0;
+        padding: 0.04rem 0;
         .billType {
           display: flex;
           align-items: center;
-          height: px2vw(17);
-          line-height: px2vw(17);
-          font-size: px2vw(14);
-          padding-left: px2vw(4);
+          height: 0.17rem;
+          line-height: 0.17rem;
+          font-size: 0.14rem;
+          padding-left: 0.04rem;
         }
       }
       .money {
-        font-size: px2vw(17);
+        font-size: 0.17rem;
         &.pay {
           color: #ff917b;
         }
