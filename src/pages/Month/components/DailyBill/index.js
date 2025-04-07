@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { billTypeToName } from "@/constants/index";
 import Icon from "@/components/Icon";
 import { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 //TODO: 这里是日账单的组件，后续需要根据实际数据进行渲染
 //1.点击箭头展开和收起
 const DailyBill = ({ date, dailyBillList, jumpToDate,onCompleteJumpToDate}) => {
@@ -65,17 +66,15 @@ const DailyBill = ({ date, dailyBillList, jumpToDate,onCompleteJumpToDate}) => {
     if (
       jumpToDate &&
       dayjs(date).format("YYYY-MM-DD") ===
-        dayjs(jumpToDate).format("YYYY-MM-DD")
+      dayjs(jumpToDate).format("YYYY-MM-DD")
     ) {
       setExpand(true);
       if (expand && jumpToDate && listRef.current) {
         listRef.current.scrollTop = listRef.current.scrollHeight;
         onCompleteJumpToDate();
       }
-    } else {
-      listRef.current.scrollTop = 0;
     }
-  }, [expand, jumpToDate, date, onCompleteJumpToDate]);
+  } ,[expand, jumpToDate, date, onCompleteJumpToDate]);
   // 自动滑到日账单列表最底部
 
   return (
@@ -113,7 +112,7 @@ const DailyBill = ({ date, dailyBillList, jumpToDate,onCompleteJumpToDate}) => {
         ref={listRef}
       >
         {dailyBillList.map((item) => (
-          <DailyBillItem key={item.id} item={item} />
+          <DailyBillItem key={uuidv4()} item={item} />
         ))}
       </div>
     </div>

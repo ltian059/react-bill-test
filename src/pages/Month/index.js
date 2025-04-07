@@ -27,31 +27,26 @@ const Month = () => {
   };
 
   //3. 计算当前月份的支出、收入和结余
-  const [currMonthBillList, setCurrMonthBillList] = useState([]);
+  // const [currMonthBillList, setCurrMonthBillList] = useState([]);
 
   //按月分组数据，统计月度的支出、收入和结余
   //1. 从redux中获取数据
   const { billList } = useSelector((state) => state.bill);
   //2. 按月分组数据，统计月度的支出、收入和结余
-  const groupBillListByMonth = () => {
-    const map = groupBy(billList, (item) =>
-      dayjs(item.date).format("YYYY | M")
-    );
-    console.log("按月分组数据", map);
-    return map;
-  };
-
   //2. useMemo缓存计算结果，避免重复计算
-  const billListGroupedByMonth = useMemo(
-    () => groupBillListByMonth(billList),
-    [billList]
+  const [currMonthBillList, billListGroupedByMonth] = useMemo(
+    () => {
+      const map = groupBy(billList, (item) =>
+        dayjs(item.date).format("YYYY | M")
+      );
+      return [map[currDate], map];      
+    },
+    [billList, currDate]
   );
-
-
   //进入页面时，默认显示当前月份的账单，并在切换月份时更新
-  useEffect(() => {
-    setCurrMonthBillList(billListGroupedByMonth[currDate]);
-  }, [billListGroupedByMonth, currDate]);
+  // useEffect(() => {
+  //   setCurrMonthBillList(billListGroupedByMonth[currDate]);
+  // }, [billListGroupedByMonth, currDate]);
 
   //计算当前月份总的支出、收入和结余
   const { pay, income, balance } = useMemo(() => {
@@ -72,20 +67,19 @@ const Month = () => {
   }, [currMonthBillList]);
 
   //当前月按照日来分组
-  const groupCurrBillListByDay = () => {
-    const map = groupBy(currMonthBillList, (item) =>
-      dayjs(item.date).format("YYYY-MM-DD")
-    );
-    const keys = Object.keys(map).sort((a, b) => {
-      return dayjs(a).isAfter(dayjs(b)) ? -1 : 1; //升序排列
-    });
-    console.log("按月分组数据", map);
-    return [keys, map];
-  };
 
   //2. useMemo缓存计算结果，避免重复计算
   const [keys, currBillListGroupedByDay] = useMemo(
-    () => groupCurrBillListByDay(),
+    () => {
+        const map = groupBy(currMonthBillList, (item) =>
+          dayjs(item.date).format("YYYY-MM-DD")
+        );
+        const keys = Object.keys(map).sort((a, b) => {
+          return dayjs(a).isAfter(dayjs(b)) ? -1 : 1; //升序排列
+        });
+        console.log("按月分组数据", map);
+        return [keys, map];
+    },
     [currMonthBillList]
   );
 
