@@ -7,7 +7,7 @@ import MonthlyBill from "./components/MonthlyBill";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import {groupBy} from "lodash"
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import { setActiveYear } from "@/store/modules/billStore";
 const Annual = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ const Annual = () => {
   判断上次是否有访问的年份；这里用Redux的原因是，当离开该页面后，react会卸载这个组件,这个组件中的useState会被重置
   而redux中的状态不会被重置，因此可以直接使用其中的状态进行返回上次访问该组件时的状态
   */
-
   const { activeYear } = useSelector((state) => state.bill);
   const currYear = dayjs(activeYear).format("YYYY");
   //将所有账单数据按照年份分组，并缓存
@@ -54,7 +53,9 @@ const Annual = () => {
   //2. 分组当前年份每个月的账单
   const [keys,groupByMonth] = useMemo(() => {
     const groupByMonth = groupBy(currYearBill, (item) => dayjs(item.date).format("YYYY-MM"));
-    const keys = Object.keys(groupByMonth);
+    const keys = Object.keys(groupByMonth).sort((a, b) => {
+      return dayjs(a).isAfter(dayjs(b)) ? -1 : 1; //降序排列
+    });
     return [keys,groupByMonth];
   }, [currYearBill]);
 
