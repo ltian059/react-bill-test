@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {groupBy} from "lodash"
 import dayjs from "dayjs";
 import { setActiveYear } from "@/store/modules/billStore";
+import { v4 as uuidv4 } from 'uuid';
 const Annual = () => {
   const dispatch = useDispatch();
   //选择年份的日期选择器
@@ -105,7 +106,7 @@ const Annual = () => {
         <div className="content">
           {keys.map((item) => 
             <MonthlyBill
-              key={item}
+              key={uuidv4()}
               month={dayjs(item).format("M")}
               billList={groupByMonth[item]}
             />
