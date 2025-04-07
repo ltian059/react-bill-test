@@ -19,10 +19,10 @@ const New = () => {
   // 控制时间选择器的显示和隐藏
   const [datePickerVisible, setPickerVisible] = useState(false);
   // 存储选择的日期
-  const [date, setDate] = useState();
-  const onDatePickerConfirm = (date) => {
+  const [date, setDate] = useState(dayjs().toDate());
+  const onDatePickerConfirm = (value) => {
     setPickerVisible(false); // 关闭时间选择器
-    setDate(date); // 设置日期
+    setDate(value); // 设置日期
   };
   //显示当前选择的日期
   const showDate = () => {
@@ -49,14 +49,15 @@ const New = () => {
     const formData = {
       type,
       money: type === "pay" ? -money : +money,
-      date: date,
+      date: dayjs(date).toISOString(),
       useFor,
     };
     console.log(formData);
     dispatch(addBillToServer(formData));
     //新增账单后，还要做： 1. 跳转到月账单列表页 2. 跳转到新增账单的年月 3. 展开新增账单日的日账单列表(DailyBill组件中)
-    dispatch(setJumpToDate(formData.date)); //设置跳转日期
+    //以上操作在异步添加完数据后执行
     navigate("/"); //返回首页
+
   };
   return (
     <div className="keepAccounts">

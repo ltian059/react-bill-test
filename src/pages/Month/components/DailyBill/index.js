@@ -9,7 +9,7 @@ import Icon from "@/components/Icon";
 import { useEffect } from "react";
 //TODO: 这里是日账单的组件，后续需要根据实际数据进行渲染
 //1.点击箭头展开和收起
-const DailyBill = ({ date, dailyBillList, jumpToDate, onJumpComplete }) => {
+const DailyBill = ({ date, dailyBillList, jumpToDate,onCompleteJumpToDate}) => {
   const [expand, setExpand] = useState(false);
   const onExpand = () => {
     setExpand(!expand);
@@ -70,12 +70,12 @@ const DailyBill = ({ date, dailyBillList, jumpToDate, onJumpComplete }) => {
       setExpand(true);
       if (expand && jumpToDate && listRef.current) {
         listRef.current.scrollTop = listRef.current.scrollHeight;
-        onJumpComplete(); //调用父组件的回调函数，表示跳转完成
+        onCompleteJumpToDate();
       }
     } else {
       listRef.current.scrollTop = 0;
     }
-  }, [expand]);
+  }, [expand, jumpToDate, date, onCompleteJumpToDate]);
   // 自动滑到日账单列表最底部
 
   return (

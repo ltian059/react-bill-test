@@ -1,46 +1,37 @@
 import { NavBar } from "antd-mobile";
 import { DownOutline } from "antd-mobile-icons";
 import MyDatePicker from "@/components/DatePicker";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import "./index.scss";
 import MonthlyBill from "./components/MonthlyBill";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import {groupBy} from "lodash"
 import dayjs, { Dayjs } from "dayjs";
-import { setLastActiveYear } from "@/store/modules/billStore";
+import { setActiveYear } from "@/store/modules/billStore";
 const Annual = () => {
+  const dispatch = useDispatch();
   //选择年份的日期选择器
   const [datePickerVisible, setDatePickerVisible] = useState(false);
   const onDatePickerConfirm = (date) => {
     setDatePickerVisible(false);    
-    setCurrYear(dayjs(date).format("YYYY"));
+    dispatch(setActiveYear(dayjs(date).toISOString()));
   };
   //获取账单数据
   const { billList } = useSelector((state) => state.bill);
-  //判断上次是否有访问的年份
-  const { lastActiveYear } = useSelector((state) => state.bill);
-  //获取当前年份
-  const [currYear, setCurrYear] = useState(lastActiveYear || dayjs().format("YYYY"));
-  //更新上次访问的年份
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setLastActiveYear(currYear));
-  }, [currYear, dispatch]);
-  
-  
-  //将所有账单数据按照年份分组，并缓存
-  const groupByYearBill = useMemo(() => {
-    const groupByYearBill = groupBy(billList, (item) => dayjs(item.date).format("YYYY"));
-    return groupByYearBill;
-  }, [billList]);
+  /*  
+  判断上次是否有访问的年份；这里用Redux的原因是，当离开该页面后，react会卸载这个组件,这个组件中的useState会被重置
+  而redux中的状态不会被重置，因此可以直接使用其中的状态进行返回上次访问该组件时的状态
+  */
 
-  //选择当前年份的账单数据
-  const [currYearBill, setCurrYearBill] = useState(groupByYearBill[currYear]);
-  //当年份变化时，更新当前年份的账单数据
-  useEffect(() => {
-    setCurrYearBill(groupByYearBill[currYear]);
-  }, [currYear, groupByYearBill]);
+  const { activeYear } = useSelector((state) => state.bill);
+  const currYear = dayjs(activeYear).format("YYYY");
+  //将所有账单数据按照年份分组，并缓存
+  const {currYearBill ,groupByYearBill} = useMemo(() => {
+    const groupByYearBill = groupBy(billList, (item) => dayjs(item.date).format("YYYY"));
+    const currYearBill = groupByYearBill[currYear];
+    return { currYearBill, groupByYearBill };
+  }, [billList, currYear]);
 
   //1. 计算当前年的总支出、收入和结余
   const [totalPay, totalIncome, totalBalance] = useMemo(() => {
@@ -90,7 +81,7 @@ const Annual = () => {
               visible={datePickerVisible}
               onClose={() => setDatePickerVisible(false)}
               onConfirm={onDatePickerConfirm}
-              defaultValue={dayjs(currYear).toDate()}
+              value={currYear ? dayjs(currYear).toDate(): dayjs().toDate()}
             />
           </NavBar>
         </div>

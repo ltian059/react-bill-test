@@ -8,31 +8,22 @@ import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { groupBy, sortBy } from "lodash";
 import DailyBill from "./components/DailyBill";
-import { setJumpToDate, setLastActiveDate } from "@/store/modules/billStore";
+import { setJumpToDate,  setActiveDate } from "@/store/modules/billStore";
 const Month = () => {
   const dispatch = useDispatch();
-  //用于添加新帐单后，重新设置当前年月
-  const { jumpToDate } = useSelector((state) => state.bill);
+
   //时间选择模块
   //点击打开时间选择器
   const [dateVisible, setDateVisible] = useState(false);
     
   //获取上一次访问该页面的日期，如果有，则跳转到该日期
-  const { lastActiveDate } = useSelector((state) => state.bill);
-  //控制时间显示
-  const [currDate, setCurrDate] = useState(() => lastActiveDate || dayjs().format("YYYY | M"));
-  //更新上次访问的日期
-  useEffect(() => {
-    //将当前日期保存到redux中，方便下次进入页面时使用
-    dispatch(setLastActiveDate(currDate));
-  }, [currDate, dispatch]);
-
+  const { activeDate } = useSelector((state) => state.bill);
+  const currDate = dayjs(activeDate).format("YYYY | M")
   //确定更改时间选择器的值的回调
   const onConfirm = (value) => {
     setDateVisible(false);
-    setCurrDate(dayjs(value).format("YYYY | M"));
+    dispatch(setActiveDate(dayjs(value).toISOString()))
     console.log("当前时间", currDate);
-    // setCurrMonthBillList(billListGroupedByMonth[currDate]);
   };
 
   //3. 计算当前月份的支出、收入和结余
@@ -99,20 +90,16 @@ const Month = () => {
   );
 
   //3. 处理跳转日期
-  //本地组件保存跳转日期
-  const [localJumpToDate, setLocalJumpToDate] = useState(jumpToDate);
+    //用于添加新帐单后，重新设置当前年月
+    const { jumpToDate } = useSelector((state) => state.bill);
   useEffect(() => {
     if (jumpToDate) {
-      setCurrDate(dayjs(jumpToDate).format("YYYY | M"));
-      setLocalJumpToDate(jumpToDate);
-      dispatch(setJumpToDate(null)); //清空跳转日期，否则会无限循环
+      dispatch(setActiveDate(jumpToDate)); //设置当前日期
     }
-  }, []);
-
-  const onJumpComplete = () => {
-    setLocalJumpToDate(null); //清空跳转日期
-  };
-
+  }, [jumpToDate]);
+  const onCompleteJumpToDate = () => {
+    dispatch(setJumpToDate(null));
+  }
 
   return (
     <div className="monthlyBill">
@@ -146,13 +133,13 @@ const Month = () => {
         </div>
       <div className="content">
         {/* 每日账单区域 */}
-        {keys.map((item) => (
+        {keys.map((item, index) => (
           <DailyBill
-            key={item}
+            key={index}
             date={item}
             dailyBillList={currBillListGroupedByDay[item]}
-            jumpToDate={localJumpToDate}
-            onJumpComplete={onJumpComplete} //传递回调函数给子组件
+            jumpToDate={jumpToDate}
+            onCompleteJumpToDate={onCompleteJumpToDate}
           />
         ))}
         {/* 时间选择器 */}

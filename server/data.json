@@ -435,6 +435,111 @@
       "money": -124,
       "date": "2025-07-06T04:00:00.000Z",
       "useFor": "travel"
+    },
+    {
+      "id": "ce95",
+      "type": "pay",
+      "money": -123,
+      "date": "2025-03-06T05:00:00.000Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "2fbb",
+      "type": "pay",
+      "money": -1245,
+      "date": "2025-03-06T05:00:00.000Z",
+      "useFor": "drinks"
+    },
+    {
+      "id": "21fa",
+      "type": "pay",
+      "money": -123,
+      "date": "2025-06-06T04:00:00.000Z",
+      "useFor": "taxi"
+    },
+    {
+      "id": "0497",
+      "type": "pay",
+      "money": -22,
+      "date": "2025-06-06T04:00:00.000Z",
+      "useFor": "clothes"
+    },
+    {
+      "id": "194e",
+      "type": "pay",
+      "money": -11,
+      "date": "2025-06-06T04:00:00.000Z",
+      "useFor": "food"
+    },
+    {
+      "id": "3376",
+      "type": "income",
+      "money": 11122,
+      "date": "2025-06-06T04:00:00.000Z",
+      "useFor": "salary"
+    },
+    {
+      "id": "9247",
+      "type": "pay",
+      "money": -11,
+      "date": "2025-06-06T04:00:00.000Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "fb7c",
+      "type": "income",
+      "money": 11143,
+      "date": "2025-04-07T01:17:41.377Z",
+      "useFor": "bonus"
+    },
+    {
+      "id": "faf7",
+      "type": "pay",
+      "money": -112,
+      "date": "2025-07-06T04:00:00.000Z",
+      "useFor": "food"
+    },
+    {
+      "id": "2fc1",
+      "type": "income",
+      "money": 4555,
+      "date": "2025-07-07T04:00:00.000Z",
+      "useFor": "overtimepay"
+    },
+    {
+      "id": "273d",
+      "type": "pay",
+      "money": -666,
+      "date": "2025-07-08T04:00:00.000Z",
+      "useFor": "longdistance"
+    },
+    {
+      "id": "cc65",
+      "type": "pay",
+      "money": -123,
+      "date": "2025-01-04T05:00:00.000Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "528f",
+      "type": "pay",
+      "money": -45,
+      "date": "2025-01-04T05:00:00.000Z",
+      "useFor": "taxi"
+    },
+    {
+      "id": "6171",
+      "type": "pay",
+      "money": -124,
+      "date": "2025-01-10T05:00:00.000Z",
+      "useFor": "food"
+    },
+    {
+      "id": "0c27",
+      "type": "income",
+      "money": 456,
+      "date": "2025-08-07T04:00:00.000Z",
+      "useFor": "cashgift"
     }
   ]
 }
